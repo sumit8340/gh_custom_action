@@ -1,36 +1,24 @@
-
-import js from "@eslint/js";
-import globals from "globals";
-import pluginReact from "eslint-plugin-react";
-import { defineConfig } from "eslint/config";
-
-export default defineConfig([
-  {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
-    plugins: { js, react: pluginReact },
-    extends: ["js/recommended"],
-    languageOptions: {
-      globals: globals.browser,
-    },
-    rules: {
-      "react/react-in-jsx-scope": "off", // ⬅️ Disable this outdated rule
-    },
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "browser": true
   },
-
-  // Optional: you can still include recommended config for other rules
-  pluginReact.configs.flat.recommended,
-
-  {
-    files: ["**/*.test.{js,jsx}"],
-    languageOptions: {
-      globals: {
-        describe: "readonly",
-        it: "readonly",
-        expect: "readonly",
-        beforeEach: "readonly",
-        afterEach: "readonly",
-        jest: "readonly",
-      },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-]);
+  "extends": ["plugin:react/recommended", "plugin:react/jsx-runtime"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "semi": [2, "always"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
