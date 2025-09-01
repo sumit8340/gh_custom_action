@@ -7,10 +7,15 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Load & cache dependencies
-        uses: ./.github/actions/cached-deps/ 
+        uses: ./.github/actions/cached-deps/
+
       - name: Lint code
         run: npm run lint
+
   test:
     runs-on: ubuntu-latest
     steps:
